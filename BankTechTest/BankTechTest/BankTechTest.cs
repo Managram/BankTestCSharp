@@ -8,11 +8,28 @@ namespace BankTechTest
 {
     public class Account
     {
-      public decimal balance;
+        public decimal balance;
+        public const int default_balance = 0;
 
-      public Account()
+        public Account()
         {
-            balance = 0;
+            balance = default_balance;
         }
+
+        public decimal Balance()
+        {
+            return balance;
+        }
+
+        public void Credit(decimal amount)
+        {
+            balance += amount;
+        }
+
+        public void Debit(decimal amount)
+        {
+            balance -= amount;
+        }
+
     }
 }
