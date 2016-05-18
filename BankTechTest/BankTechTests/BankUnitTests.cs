@@ -11,9 +11,11 @@ namespace BankTechTests
         public void Balance()
         {
             Account account = new Account();
-            double expected = 0;
+            decimal expected = 0;
 
-            account.Balance();
+            decimal actual = account.balance;
+
+            Assert.AreEqual(expected, actual);
 
 
         }

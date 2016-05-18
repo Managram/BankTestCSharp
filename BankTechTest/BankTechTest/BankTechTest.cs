@@ -8,9 +8,9 @@ namespace BankTechTest
 {
     public class Account
     {
-        public int balance;
+      public decimal balance;
 
-        public void Balance()
+      public Account()
         {
             balance = 0;
         }
