@@ -23,7 +23,7 @@ namespace BankTechTests
         public void Account_initializesWith_BlankTransactionHistory()
         {
             Account account = new Account();
-            string expected = "date || credit || debit || balance";
+            string expected = "date || credit || debit || balance ";
 
             string actual = account.History();
 
@@ -50,8 +50,9 @@ namespace BankTechTests
         public void Credit_RecordsTransactionInHistory()
         {
             Account account = new Account();
+            string date = DateTime.Now.ToString("dd/MM/yy");
             decimal creditAmount = 10;
-            string expected = "{date} || {amount} || || {balance}";
+            string expected = "date || credit || debit || balance " + date + " || 10 || || 10";
 
             account.Credit(creditAmount);
 

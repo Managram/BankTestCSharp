@@ -11,14 +11,19 @@ namespace BankTechTest
         private decimal balance;
         private string history;
         private const int default_balance = 0;
-        private const string history_header = "date || credit || debit || balance";
+        private const string history_header = "date || credit || debit || balance ";
+        private string date;
         DateTime dateAndTime = DateTime.Now;
-        private string date = dateAndTime.ToString("dd/MM/yyyy"));
 
         public Account()
         {
             balance = default_balance;
             history = history_header;
+        }
+
+        private string returnDate()
+        {
+           return date = dateAndTime.ToString("dd/MM/yy");
         }
 
         public string History()
@@ -34,7 +39,7 @@ namespace BankTechTest
         public void Credit(decimal amount)
         {
             balance += amount;
-            history += "" + date + "||" + amount + "|| ||" + balance + "\n"; ;
+            history += returnDate() + " || " + amount + " || || " + balance; 
         }
 
         public void Debit(decimal amount)
