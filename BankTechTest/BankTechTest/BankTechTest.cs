@@ -47,6 +47,5 @@ namespace BankTechTest
             balance -= amount;
             history += returnDate() + " || || " + amount + " || " + balance + " \n";
         }
-
     }
 }
