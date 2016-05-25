@@ -14,16 +14,18 @@ namespace BankTechTest
         private const string history_header = "date || credit || debit || balance \n";
         private string date;
         DateTime dateAndTime = DateTime.Now;
+        private readonly ITransaction _transaction;
 
-        public Account()
+        public Account(ITransaction transaction)
         {
             balance = default_balance;
             history = history_header;
+            _transaction = transaction;
         }
 
         private string returnDate()
         {
-           return date = dateAndTime.ToString("dd/MM/yy");
+            return date = dateAndTime.ToString("dd/MM/yy");
         }
 
         public string History()
@@ -39,13 +41,41 @@ namespace BankTechTest
         public void Credit(decimal amount)
         {
             balance += amount;
-            history += returnDate() + " || " + amount + " || || " + balance + " \n"; 
+            history += new Transaction(amount, 0, balance);
         }
 
         public void Debit(decimal amount)
         {
             balance -= amount;
-            history += returnDate() + " || || " + amount + " || " + balance + " \n";
+            history += new Transaction(0, amount, balance);
         }
     }
+
+    public interface ITransaction
+    {
+    }
+
+    public class Transaction
+    {
+        private string date;
+        private string dateToday;
+        DateTime dateAndTime = DateTime.Now;
+        public decimal Debit { get; set; }
+        public decimal Credit { get; set; }
+        public decimal Balance { get; set; }
+
+        private string returnDate()
+        {
+            return date = dateAndTime.ToString("dd/MM/yy");
+        }
+
+        public Transaction(decimal debit_amount, decimal credit_amount, decimal balance)
+        {
+            dateToday = returnDate();
+            Credit = credit_amount;
+            Debit = debit_amount;
+            Balance = balance;
+        }
+    }
+
 }
